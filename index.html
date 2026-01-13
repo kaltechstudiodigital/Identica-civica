@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEC - Identica-civica | Droit à la citoyenneté pour une vie tranquille</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(79, 70, 229, 0.6);
+        }
+
+        .btn-nav::after {
+            display: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s 0.3s backwards;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-item .label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Floating badges */
+        .floating-badge {
+            position: absolute;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: floatBadge 4s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .floating-badge.badge-1 {
+            top: 20%;
+            right: -10%;
+        }
+
+        .floating-badge.badge-2 {
+            bottom: 25%;
+            right: -15%;
+            animation-delay: 2s;
+        }
+
+        .badge-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 5rem 3rem;
+            background: var(--light);
+            position: relative;
+            margin-top: -50px;
+            z-index: 2;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .stat-card:nth-child(2) .stat-icon { background: var(--gradient-2); }
+        .stat-card:nth-child(3) .stat-icon { background: var(--gradient-3); }
+        .stat-card:nth-child(4) .stat-icon { background: var(--gradient-4); }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1));
+            border-radius: 50px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Mission Section */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .mission-content h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .mission-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-features {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-item:nth-child(2) .feature-icon { background: var(--gradient-2); }
+        .feature-item:nth-child(3) .feature-icon { background: var(--gradient-3); }
+
+        .mission-image-container {
+            position: relative;
+        }
+
+        .mission-main-image {
+            width: 100%;
+            height: 500px;
+            background: var(--gradient-1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 20px 60px rgba(79, 70, 229, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-main-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(45deg); }
+            100% { transform: translateX(50%) translateY(50%) rotate(45deg); }
+        }
+
+        /* Axes Section */
+        .axes-section {
+            background: linear-gradient(180deg, var(--light) 0%, white 100%);
+        }
+
+        .axes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .axe-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .axe-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+        }
+
+        .axe-card:nth-child(2)::before { background: var(--gradient-2); }
+        .axe-card:nth-child(3)::before { background: var(--gradient-3); }
+        .axe-card:nth-child(4)::before { background: var(--gradient-4); }
+        .axe-card:nth-child(5)::before { background: var(--gradient-1); }
+
+        .axe-card:hover::before {
+            opacity: 1;
+        }
+
+        .axe-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+
+        .axe-card:hover .axe-content * {
+            color: white;
+        }
+
+        .axe-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .axe-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .axe-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .axe-card:nth-child(2) .axe-icon { background: var(--gradient-2); }
+        .axe-card:nth-child(3) .axe-icon { background: var(--gradient-3); }
+        .axe-card:nth-child(4) .axe-icon { background: var(--gradient-4); }
+        .axe-card:nth-child(5) .axe-icon { background: var(--gradient-1); }
+
+        .axe-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .axe-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .team-avatar {
+            width: 130px;
+            height: 130px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 800;
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
+            position: relative;
+        }
+
+        .team-avatar::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(79, 70, 229, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .team-card:nth-child(2) .team-avatar { background: var(--gradient-2); }
+        .team-card:nth-child(3) .team-avatar { background: var(--gradient-3); }
+        .team-card:nth-child(4) .team-avatar { background: var(--gradient-4); }
+        .team-card:nth-child(5) .team-avatar { background: var(--gradient-1); }
+        .team-card:nth-child(6) .team-avatar { background: var(--gradient-2); }
+
+        .team-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .team-contact {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 6rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            top: -300px;
+            right: -200px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -250px;
+            left: -150px;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: var(--gradient-1);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .contact-item:hover .contact-icon {
+            background: white;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            background: var(--light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                align-items: flex-start;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-container {
+                padding: 1rem 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .mission-grid,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .axes-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🌍</div>
+                <span>IDEC</span>
+            </div>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#axes">Actions</a></li>
+                <li><a href="#equipe">Équipe</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#adhesion" class="btn-nav">Adhérer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Droit à la <span class="highlight">citoyenneté</span> pour une vie tranquille</h1>
+                <p>Promouvoir la reconnaissance légale et sociale de chaque citoyen à travers l'accès universel aux documents d'état civil en Afrique.</p>
+                <div class="hero-buttons">
+                    <a href="#mission" class="btn btn-primary">
+                        ✨ Découvrir IDEC
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        💬 Nous rejoindre
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="number">20%</span>
+                            <span class="label">Enfants non enregistrés</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">183K+</span>
+                            <span class="label">Élèves sans papiers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">5</span>
+                            <span class="label">Axes d'intervention</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">2030</span>
+                            <span class="label">Notre objectif ODD</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-badge badge-1">
+                    <div class="badge-icon">📋</div>
+                    <div>
+                        <div style="font-weight: 700; color: var(--dark);">État Civil</div>
+                        <div style="font-size: 0.85rem; color: var(--gray);">Accès universel</div>
+                    </div>
+                </div>
+                <div class="floating-badge badge-2">
+                    <div class="badge-icon">🎓</div>
+                    <div>
+                        <div style="font-weight: 700; color: var(--dark);">Éducation</div>
+                        <div style="font-size: 0.85rem; color: var(--gray);">Sensibilisation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">👶</div>
+                <div class="stat-number">20<span style="font-size: 2rem;">%</span></div>
+                <div class="stat-label">Enfants non enregistrés en Afrique</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎒</div>
+                <div class="stat-number">183K+</div>
+                <div class="stat-label">Élèves sans acte au Sénégal</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-number">37.8<span style="font-size: 2rem;">%</span></div>
+                <div class="stat-label">Enfants en petite enfance sans papiers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number">ODD 16.9</div>
+                <div class="stat-label">Identité juridique pour tous d'ici 2030</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission">
+        <div class="section-header">
+            <div class="section-badge">🌍 À Propos</div>
+            <h2 class="section-title">Notre Mission</h2>
+            <p class="section-subtitle">Œuvrer pour que chaque personne dispose des documents nécessaires à l'exercice plein de ses droits et devoirs citoyens</p>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-content">
+                <h3>Identica-civica (IDEC)</h3>
+                <p>Une organisation internationale à but non lucratif, apolitique et non confessionnelle, basée à Genève, Suisse.</p>
+                <p>Nous visons à promouvoir la reconnaissance légale et sociale de chaque citoyen, en œuvrant pour que toute personne, dès sa naissance et tout au long de sa vie, puisse disposer des documents civils et administratifs nécessaires.</p>
+                <div class="mission-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">📜</div>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Citoyenneté Dès la Naissance</h4>
+                            <p style="color: var(--gray); margin: 0;">La reconnaissance commence avec l'acte de naissance, pas avec la carte d'identité.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🤝</div>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Approche Inclusive</h4>
+                            <p style="color: var(--gray); margin: 0;">Mobilisation des institutions, collectivités et acteurs communautaires.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌟</div>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: var(--dark);">Impact Durable</h4>
+                            <p style="color: var(--gray); margin: 0;">Construire des ponts entre le citoyen et l'État pour une société apaisée.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-image-container">
+                <div class="mission-main-image">
+                    🌍
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Axes Section -->
+    <section id="axes" class="axes-section">
+        <div class="section-header">
+            <div class="section-badge">🎯 Nos Actions</div>
+            <h2 class="section-title">5 Axes d'Intervention Stratégiques</h2>
+            <p class="section-subtitle">Une approche globale et intégrée pour un impact mesurable et durable sur le terrain</p>
+        </div>
+        <div class="axes-grid">
+            <div class="axe-card">
+                <div class="axe-number">01</div>
+                <div class="axe-content">
+                    <div class="axe-icon">📋</div>
+                    <h3>Citoyenneté Légale & Gouvernance</h3>
+                    <p>Guichets citoyens mobiles, délivrance gratuite d'actes prioritaires, mise à jour des registres et formation des agents municipaux pour rapprocher l'administration des populations.</p>
+                </div>
+            </div>
+            <div class="axe-card">
+                <div class="axe-number">02</div>
+                <div class="axe-content">
+                    <div class="axe-icon">🎓</div>
+                    <h3>Éducation Civique & Engagement</h3>
+                    <p>Campagnes de sensibilisation communautaire, programmes scolaires d'éducation citoyenne, mobilisation des « badienou gokh », imams, enseignants et leaders pour développer une culture citoyenne proactive.</p>
+                </div>
+            </div>
+            <div class="axe-card">
+                <div class="axe-number">03</div>
+                <div class="axe-content">
+                    <div class="axe-icon">🤝</div>
+                    <h3>Inclusion Sociale & Équité</h3>
+                    <p>Appui spécifique aux enfants de la rue, élèves sans papiers, pensionnaires de dahras, femmes marginalisées et personnes handicapées. Faire de la reconnaissance légale un levier de dignité.</p>
+                </div>
+            </div>
+            <div class="axe-card">
+                <div class="axe-number">04</div>
+                <div class="axe-content">
+                    <div class="axe-icon">💻</div>
+                    <h3>Innovation & Digitalisation</h3>
+                    <p>Développement de systèmes numériques de gestion de l'état civil, appui à la connectivité des communes, capitalisation des données pour renforcer la transparence et l'efficacité administrative.</p>
+                </div>
+            </div>
+            <div class="axe-card">
+                <div class="axe-number">05</div>
+                <div class="axe-content">
+                    <div class="axe-icon">🔗</div>
+                    <h3>Partenariats & Capitalisation</h3>
+                    <p>Création de plateformes de dialogue entre l'État, les collectivités, la société civile et les partenaires techniques pour promouvoir les bonnes pratiques et mutualiser les efforts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipe" class="team-section">
+        <div class="section-header">
+            <div class="section-badge">👥 Notre Équipe</div>
+            <h2 class="section-title">Les Membres Fondateurs</h2>
+            <p class="section-subtitle">Des professionnels engagés et passionnés par la cause de la citoyenneté universelle</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">PD</div>
+                <div class="team-name">Dr Papa Samba DIOP</div>
+                <div class="team-role">🎖️ Président-Fondateur</div>
+                <div class="team-contact">📧 papsambadiop@gmail.com<br>📱 +221 77 637 41 35</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">MD</div>
+                <div class="team-name">Mouhamadou El Bachir DIACK</div>
+                <div class="team-role">👔 Vice-Président</div>
+                <div class="team-contact">📧 ediack1961@yahoo.com<br>📱 +221 77 717 17 08</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">NT</div>
+                <div class="team-name">Ndèye Coumba TOURE</div>
+                <div class="team-role">📝 Secrétaire Général</div>
+                <div class="team-contact">📧 coumbatoure05@gmail.com<br>📱 +221 77 100 42 34</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">KD</div>
+                <div class="team-name">Khadidiatou DIENG</div>
+                <div class="team-role">💰 Trésorière</div>
+                <div class="team-contact">📧 babykhd35@gmail.com<br>📱 +221 77 651 39 00</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">MF</div>
+                <div class="team-name">Marième FALL</div>
+                <div class="team-role">⚙️ Secrétaire Exécutif</div>
+                <div class="team-contact">📧 fallrema1899@gmail.com<br>📱 +221 77 634 66 86</div>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">KG</div>
+                <div class="team-name">Khalifa Ababacar GAYE</div>
+                <div class="team-role">💻 Communication & Digital</div>
+                <div class="team-contact">📧 khalifagaye51@gmail.com<br>📱 +221 77 279 66 28</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="adhesion">
+        <div class="cta-content">
+            <h2>Rejoignez Notre Combat pour la Citoyenneté</h2>
+            <p>Ensemble, construisons une société où chaque individu est reconnu, protégé et valorisé dès la naissance. Votre engagement fait la différence.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    🤝 Devenir Membre
+                </a>
+                <a href="#" class="btn btn-outline">
+                    💝 Faire un Don
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <div class="section-badge">📞 Contact</div>
+            <h2 class="section-title">Parlons de Votre Engagement</h2>
+            <p class="section-subtitle">Nous sommes à votre écoute pour toute question, partenariat ou collaboration</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Nos Coordonnées</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong style="color: var(--dark); display: block; margin-bottom: 0.5rem;">Siège Social</strong>
+                        C/O AHVI-GENÈVE<br>
+                        Chemin des Mines 2<br>
+                        1202 Genève, Suisse
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong style="color: var(--dark); display: block; margin-bottom: 0.5rem;">Téléphone</strong>
+                        +221 77 637 41 35 (Président)<br>
+                        +221 77 279 66 28 (Communication)
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong style="color: var(--dark); display: block; margin-bottom: 0.5rem;">Email</strong>
+                        contact@idec-ong.org<br>
+                        khalifagaye51@gmail.com
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="LinkedIn">💼</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="YouTube">🎥</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" placeholder="Entrez votre nom complet" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse email *</label>
+                        <input type="email" id="email" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet *</label>
+                        <input type="text" id="subject" placeholder="Objet de votre message" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre message *</label>
+                        <textarea id="message" placeholder="Décrivez votre demande ou votre intérêt..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        📤 Envoyer le Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">IDEC</div>
+                <p>Association internationale à but non lucratif pour la promotion de la reconnaissance légale et sociale de chaque citoyen.</p>
+                <p style="margin-top: 1rem;"><strong>"Droit à la citoyenneté pour une vie tranquille"</strong></p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="LinkedIn">💼</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="Instagram">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <a href="#accueil">Accueil</a>
+                <a href="#mission">Notre Mission</a>
+                <a href="#axes">Nos Actions</a>
+                <a href="#equipe">Notre Équipe</a>
+                <a href="#contact">Contact</a>
+                <a href="#adhesion">Devenir Membre</a>
+            </div>
+            <div class="footer-section">
+                <h3>Partenaires</h3>
+                <a href="#">UNICEF</a>
+                <a href="#">UNFPA</a>
+                <a href="#">PNUD</a>
+                <a href="#">UNESCO</a>
+                <a href="#">Plan International</a>
+                <a href="#">Save the Children</a>
+            </div>
+            <div class="footer-section">
+                <h3>Informations</h3>
+                <p style="margin-bottom: 1rem;">ONG de droit suisse<br>Enregistrée à Genève</p>
+                <a href="#">📄 Statuts</a>
+                <a href="#">🔒 Confidentialité</a>
+                <a href="#">⚖️ Mentions Légales</a>
+                <a href="#">📊 Rapports Annuels</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 IDEC - Identica-civica. Tous droits réservés.</p>
+            <p style="margin-top: 0.5rem;">Conçu avec ❤️ par <strong>Khalifa Ababacar GAYE</strong> | Responsable Communication & Digital</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.mobile-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`✅ Merci ${name} ! Votre message a été envoyé avec succès.\n\nNous vous répondrons dans les plus brefs délais.`);
+            e.target.reset();
+        }
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .axe-card, .team-card, .feature-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate stats numbers
+        function animateValue(element, start, end, duration, suffix = '') {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = Math.floor(progress * (end - start) + start);
+                
+                if (suffix === '%') {
+                    element.innerHTML = value + '<span style="font-size: 2rem;">%</span>';
+                } else if (suffix === 'K+') {
+                    element.innerHTML = value + 'K+';
+                } else {
+                    element.textContent = value + suffix;
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        const configs = [
+                            { value: 20, suffix: '%' },
+                            { value: 183, suffix: 'K+' },
+                            { value: 37.8, suffix: '%' },
+                            { value: 0, suffix: '', text: 'ODD 16.9' }
+                        ];
+                        
+                        setTimeout(() => {
+                            if (index === 3) {
+                                stat.textContent = 'ODD 16.9';
+                            } else {
+                                animateValue(stat, 0, configs[index].value, 2000, configs[index].suffix);
+                            }
+                        }, index * 150);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            const heroImage = document.querySelector('.hero-image');
+            
+            if (heroContent && scrolled < 600) {
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroContent.style.opacity = 1 - scrolled / 600;
+            }
+            
+            if (heroImage && scrolled < 600) {
+                heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add cursor trail effect (optional, for extra wow factor)
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Testimonial/Impact counter on scroll
+        const impactStats = {
+            births: 0,
+            students: 0,
+            communities: 0
+        };
+
+        // Add interactive hover effects to cards
+        document.querySelectorAll('.axe-card, .team-card, .stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Navbar active link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+        function highlightNav() {
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.style.color = '';
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.style.color = 'var(--primary)';
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+
+        // Add typing effect to hero title (optional)
+        function typeEffect() {
+            const heroTitle = document.querySelector('.hero-content h1');
+            if (!heroTitle) return;
+            
+            const originalText = heroTitle.innerHTML;
+            heroTitle.innerHTML = '';
+            let index = 0;
+
+            function type() {
+                if (index < originalText.length) {
+                    heroTitle.innerHTML += originalText.charAt(index);
+                    index++;
+                    setTimeout(type, 50);
+                }
+            }
+
+            // Uncomment to enable typing effect
+            // setTimeout(type, 500);
+        }
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                confetti();
+                alert('🎉 Vous avez découvert le code secret d\'IDEC ! Merci de votre curiosité !');
+            }
+        });
+
+        function confetti() {
+            // Simple confetti effect
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = ['#667eea', '#764ba2', '#f093fb', '#f5576c'][Math.floor(Math.random() * 4)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '9999';
+                confetti.style.pointerEvents = 'none';
+                document.body.appendChild(confetti);
+
+                const fall = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+
+                fall.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img.lazy').forEach(img => imageObserver.observe(img));
+        }
+
+        // Add smooth reveal for sections
+        const revealSections = document.querySelectorAll('section');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            revealObserver.observe(section);
+        });
+
+        // Print page functionality
+        function printPage() {
+            window.print();
+        }
+
+        // Share functionality
+        function shareWebsite() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'IDEC - Identica-civica',
+                    text: 'Découvrez IDEC, une ONG pour le droit à la citoyenneté en Afrique',
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                alert('✅ Lien copié dans le presse-papier !');
+            }
+        }
+
+        // Add back to top button
+        const backToTop = document.createElement('button');
+        backToTop.innerHTML = '⬆️';
+        backToTop.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        `;
+
+        document.body.appendChild(backToTop);
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'all';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        backToTop.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) translateY(-3px)';
+            this.style.boxShadow = '0 6px 25px rgba(79, 70, 229, 0.6)';
+        });
+
+        backToTop.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(79, 70, 229, 0.4)';
+        });
+
+        // Console message for developers
+        console.log('%c🌍 IDEC - Identica-civica', 'color: #667eea; font-size: 24px; font-weight: bold;');
+        console.log('%cDroit à la citoyenneté pour une vie tranquille', 'color: #764ba2; font-size: 16px;');
+        console.log('%cSite créé par Khalifa Ababacar GAYE', 'color: #10b981; font-size: 14px;');
+        console.log('%cResponsable Communication & Transformation Digitale', 'color: #64748b; font-size: 12px;');
+        console.log('%c📧 khalifagaye51@gmail.com | 📱 +221 77 279 66 28', 'color: #f59e0b; font-size: 12px;');
+
+        // Performance monitoring (optional)
+        if ('performance' in window) {
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    const perfData = performance.timing;
+                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                    console.log(`⚡ Page chargée en ${(pageLoadTime / 1000).toFixed(2)} secondes`);
+                }, 0);
+            });
+        }
+    </script>
+</body>
+</html>
